@@ -83,7 +83,7 @@ public class Inventory {
 
         if(books.get(isbn) != null)
         {
-            if(availableBooks.get(isbn) + quantity<0)
+            if(availableBooks.get(isbn) + quantity>=0)
             {
                 availableBooks.put(isbn,availableBooks.get(isbn) + quantity);
             }

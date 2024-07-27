@@ -18,7 +18,7 @@ public class PatronService {
     }
     
     public void addPatron(String name,int number,String patronId) {
-        log.logInfo("patronService  addBook START");
+        log.logInfo("patronService addPatron START");
 
         if(!patrons.containsKey(patronId)) {
             patrons.put(patronId, new Patron(name,number,patronId));
@@ -29,7 +29,7 @@ public class PatronService {
             log.logError("Patron already exits with patronId: "+patronId);
         }
 
-        log.logInfo("patronService  addBook END");
+        log.logInfo("patronService addPatron END");
 
     }
 
