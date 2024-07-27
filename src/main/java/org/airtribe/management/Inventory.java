@@ -13,7 +13,7 @@ public class Inventory {
 
 
     // Add a book to the inventory
-    public static void addBook(String title,String author,String isbn,int year,int quantity) {
+    public void addBook(String title,String author,String isbn,int year,int quantity) {
         log.logInfo("Inventory addBook START");
         if(!books.containsKey(isbn)){
             books.put(isbn, new Book(title, author, isbn, year));
@@ -83,7 +83,7 @@ public class Inventory {
 
         if(books.get(isbn) != null)
         {
-            if(availableBooks.get(isbn) + quantity<0)
+            if(availableBooks.get(isbn) + quantity>=0)
             {
                 availableBooks.put(isbn,availableBooks.get(isbn) + quantity);
             }

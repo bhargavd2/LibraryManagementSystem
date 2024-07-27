@@ -6,12 +6,12 @@ public class Patron
 {
     private String name;
     private String patronId;
-    private int number;
+    private int phoneNumber;
 
-    public Patron(String name,int number, String patronId) {
+    public Patron(String name,int phoneNumber, String patronId) {
         this.name = name;
         this.patronId = patronId;
-        this.number = number;
+        this.phoneNumber = phoneNumber;
         List<Book> borrowedBooks = new ArrayList<>();
     }
 
@@ -23,12 +23,12 @@ public class Patron
         return patronId;
     }
 
-    public int getNumber() {
-        return number;
+    public int getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setNumber(int number) {
-        this.number = number;
+    public void setPhoneNumber(int number) {
+        this.phoneNumber = number;
     }
 
     @Override
