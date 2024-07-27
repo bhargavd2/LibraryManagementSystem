@@ -48,5 +48,6 @@ the solution should demonstrate understanding of Object-Oriented Programming (OO
 - **Persistence**: Integrate with a database for persistent storage.
 - **Advanced Features**: Implement multi-branch support and notification.
 - **Optional Extensions**
+  - validator : as of now no validation is done. eg : 1002 is also a phone number
   - Multi-branch Support: Extend the system to support multiple library branches.
   - Transfer Book: to support above branching and help transfer books between library

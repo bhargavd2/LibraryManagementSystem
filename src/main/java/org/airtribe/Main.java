@@ -1,5 +1,6 @@
 package org.airtribe;
 
+import org.airtribe.util.seed;
 import org.airtribe.util.logging;
 import org.airtribe.management.Inventory;
 import org.airtribe.management.LendingSystem;
@@ -15,6 +16,9 @@ public class Main {
 
     public static void main(String[] args) {
         log.logInfo("Library Management System START");
+
+        seed.seed(inventory,patronService);
+
         boolean flag = true;
         while (flag) {
             try {
@@ -25,6 +29,7 @@ public class Main {
                 System.out.println("4. Return Book");
                 System.out.println("5. View Available Books");
                 System.out.println("6. View Borrowed Books");
+                System.out.println("7. Check Book Availablity by ISBN");
                 System.out.println("0. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
@@ -48,6 +53,9 @@ public class Main {
                         break;
                     case 6:
                         viewBorrowedBooks();
+                        break;
+                    case 7:
+                        checkBookAvalibality();
                         break;
                     case 0:
                         System.out.println("Exiting...");
@@ -106,7 +114,7 @@ public class Main {
         System.out.println("1. Add Patron");
         System.out.println("2. Remove Patron");
         System.out.println("3. Update Patron");
-        System.out.println("3. View Borrowed Patron");
+        System.out.println("4. View Borrowed Patron");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -150,7 +158,7 @@ public class Main {
         System.out.print("Enter book quantity: ");
         int quantity = scanner.nextInt();
 
-        Inventory.addBook(title, author, isbn, year, quantity);
+        inventory.addBook(title, author, isbn, year, quantity);
 
         log.logInfo("Library Management System addBook END");
     }
@@ -248,7 +256,7 @@ public class Main {
         System.out.print("Enter patron name: ");
         String name = scanner.nextLine();
 
-        System.out.print("Enter patron number: ");
+        System.out.print("Enter patron Phone Number: ");
         int number =scanner.nextInt();
         scanner.nextLine();
 
@@ -263,7 +271,7 @@ public class Main {
         System.out.print("Enter patron ID: ");
         String patronId = scanner.nextLine();
 
-        System.out.print("Enter patron number: ");
+        System.out.print("Enter patron Phone Number: ");
         int number = scanner.nextInt();
         scanner.nextLine();
 
@@ -340,5 +348,15 @@ public class Main {
         log.logInfo("Library Management System viewBorrowedBooks START");
         lendingSystem.viewBorrowedBooks();
         log.logInfo("Library Management System viewBorrowedBooks END");
+    }
+
+    private static void checkBookAvalibality(){
+        log.logInfo("Library Management System checkBookAvalibality START");
+        System.out.print("Enter book ISBN to remove: ");
+        String isbn = scanner.nextLine();
+
+        System.out.println("the available quantity of book with ISBN: "+isbn+ " is qty: "+inventory.getAvailableQuantity(isbn));
+
+        log.logInfo("Library Management System checkBookAvalibality END");
     }
 }

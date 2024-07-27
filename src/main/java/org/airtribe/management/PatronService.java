@@ -33,12 +33,12 @@ public class PatronService {
 
     }
 
-    public void updatePatron(int number,String patronId) {
+    public void updatePatron(int phoneNumber,String patronId) {
         log.logInfo("patronService  updatePatron START");
 
         if(patrons.containsKey(patronId)) {
             Patron patron = patrons.get(patronId);
-            patron.setNumber(number);
+            patron.setPhoneNumber(phoneNumber);
             patrons.put(patronId, patron);
             log.logInfo("Patron updated successfully.");
         }
