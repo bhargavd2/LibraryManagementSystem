@@ -3,6 +3,7 @@ package org.airtribe;
 import org.airtribe.util.logging;
 import org.airtribe.management.Inventory;
 import org.airtribe.management.LendingSystem;
+import org.airtribe.management.PatronService;
 import java.util.*;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
     private static final LendingSystem lendingSystem = new LendingSystem(inventory);
     private static final Scanner scanner = new Scanner(System.in);
     private static final logging log = new logging();
+    private static final PatronService patronService = new PatronService(lendingSystem);
 
     public static void main(String[] args) {
         log.logInfo("Library Management System START");
@@ -250,7 +252,7 @@ public class Main {
         int number =scanner.nextInt();
         scanner.nextLine();
 
-        lendingSystem.addPatron(name,number, patronId);
+        patronService.addPatron(name,number, patronId);
 
         log.logInfo("Library Management System addPatron END");
     }
@@ -265,7 +267,7 @@ public class Main {
         int number = scanner.nextInt();
         scanner.nextLine();
 
-        lendingSystem.updatePatron(number, patronId);
+        patronService.updatePatron(number, patronId);
         log.logInfo("Library Management System updatePatron END");
     }
 
@@ -275,7 +277,7 @@ public class Main {
         System.out.print("Enter patron ID: ");
         String patronId = scanner.nextLine();
 
-        lendingSystem.removePatron(patronId);
+        patronService.removePatron(patronId);
         log.logInfo("Library Management System removePatron END");
     }
 
@@ -284,8 +286,14 @@ public class Main {
 
         System.out.print("Enter patron ID: ");
         String patronId = scanner.nextLine();
+        if(patronService.isPatronExits(patronId))
+        {
+            lendingSystem.viewBorrowedBooksByPatron(patronService.getPatron(patronId));
+        }
+        else {
+            log.logError("Patron doesn't exits with patronId: "+patronId);
+        }
 
-        lendingSystem.viewBorrowedBooksByPatron(patronId);
         log.logInfo("Library Management System viewBorrowedBooksByPatron END");
     }
 
@@ -296,8 +304,14 @@ public class Main {
 
         System.out.print("Enter patron ID: ");
         String patronId = scanner.nextLine();
+        if(patronService.isPatronExits(patronId))
+        {
+            lendingSystem.checkoutBook(isbn, patronService.getPatron(patronId));
+        }
+        else {
+            log.logError("Patron doesn't exits with patronId: "+patronId);
+        }
 
-        lendingSystem.checkoutBook(isbn, patronId);
         log.logInfo("Library Management System checkoutBook END");
     }
 
@@ -308,8 +322,11 @@ public class Main {
 
         System.out.print("Enter patron ID: ");
         String patronId = scanner.nextLine();
-
-        lendingSystem.returnBook(isbn, patronId);
+        if(patronService.isPatronExits(patronId)) {
+            lendingSystem.returnBook(isbn, patronService.getPatron(patronId));
+        }else {
+            log.logError("Patron doesn't exits with patronId: "+patronId);
+        }
         log.logInfo("Library Management System returnBook END");
     }
 
