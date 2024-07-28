@@ -49,7 +49,7 @@ the solution should demonstrate understanding of Object-Oriented Programming (OO
 ## Future Plans
 - **Persistence**: Integrate with a database for persistent storage.
 - **Advanced Features**: Implement multi-branch support and notification.
-- **Date of Lending and return**: during Checkout stop date and time to return
+- **Date of Lending and return**: during Checkout store date and time to return
 - **Optional Extensions**
   - validator : as of now no validation is done. eg : 1002 is also a phone number
   - Multi-branch Support: Extend the system to support multiple library branches.
