@@ -29,7 +29,7 @@ public class Main {
                 System.out.println("4. Return Book");
                 System.out.println("5. View Available Books");
                 System.out.println("6. View Borrowed Books");
-                System.out.println("7. Check Book Availablity by ISBN");
+                System.out.println("7. Check Book Availability by ISBN");
                 System.out.println("0. Exit");
                 System.out.print("Enter your choice: ");
                 int choice = scanner.nextInt();
@@ -60,7 +60,7 @@ public class Main {
                     case 0:
                         System.out.println("Exiting...");
                         flag = false;
-                        return;
+                        break;
                     default:
                         System.out.println("Invalid choice. Please try again.");
                 }
@@ -114,7 +114,8 @@ public class Main {
         System.out.println("1. Add Patron");
         System.out.println("2. Remove Patron");
         System.out.println("3. Update Patron");
-        System.out.println("4. View Borrowed Patron");
+        System.out.println("4. View Patron");
+        System.out.println("5. View Borrowed Patron");
         System.out.print("Enter your choice: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
@@ -129,6 +130,9 @@ public class Main {
                 updatePatron();
                 break;
             case 4:
+                viewPatron();
+                break;
+            case 5:
                 viewBorrowedBooksByPatron();
                 break;
             default:
@@ -289,11 +293,31 @@ public class Main {
         log.logInfo("Library Management System removePatron END");
     }
 
+    private static void viewPatron()
+    {
+        log.logInfo("Library Management System viewPatron START");
+
+        System.out.print("Enter patron ID: ");
+        String patronId = scanner.nextLine();
+
+        if(patronService.isPatronExits(patronId))
+        {
+            System.out.println(patronService.getPatron(patronId) + " Phone Number : "+ patronService.getPatron(patronId).getPhoneNumber());
+            lendingSystem.viewBorrowedBooksByPatron(patronService.getPatron(patronId));
+        }
+        else {
+            log.logError("Patron doesn't exits with patronId: "+patronId);
+        }
+
+        log.logInfo("Library Management System viewPatron END");
+    }
+
     private static void viewBorrowedBooksByPatron() {
         log.logInfo("Library Management System viewBorrowedBooksByPatron START");
 
         System.out.print("Enter patron ID: ");
         String patronId = scanner.nextLine();
+
         if(patronService.isPatronExits(patronId))
         {
             lendingSystem.viewBorrowedBooksByPatron(patronService.getPatron(patronId));

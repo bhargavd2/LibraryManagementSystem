@@ -20,7 +20,7 @@ public class LendingSystem {
     }
 
     public void checkoutBook(String isbn, Patron patron) {
-        log.logInfo("LendingSystem  addBook START");
+        log.logInfo("LendingSystem checkoutBook START");
 
         Book book = inventory.searchByIsbn(isbn);
 
@@ -32,7 +32,7 @@ public class LendingSystem {
                     inventory.updateAvailableQuantity(isbn,-1);
                     borrowedBooks.add(book);
                     borrowedBooksMap.put(patron,borrowedBooks);
-                   log.logInfo("Book checked out: " + book);
+                   log.logInfo("Book checked out: " + book + " by: "+patron);
                 } else {
                     log.logError("Checkout failed: Patron has already borrowed 3 books.");
                 }
@@ -43,11 +43,11 @@ public class LendingSystem {
             log.logError("Checkout failed: Book or patron not found.");
         }
 
-        log.logInfo("LendingSystem  addBook END");
+        log.logInfo("LendingSystem checkoutBook END");
     }
 
     public void returnBook(String isbn, Patron patron) {
-        log.logInfo("LendingSystem  addBook START");
+        log.logInfo("LendingSystem returnBook START");
 
         Book book = inventory.searchByIsbn(isbn);
 
@@ -66,7 +66,7 @@ public class LendingSystem {
             log.logError("Book or patron not found.");
         }
 
-        log.logInfo("LendingSystem  addBook END");
+        log.logInfo("LendingSystem returnBook END");
     }
 
     public boolean isBookBorrowed(String isbn) {
@@ -105,7 +105,7 @@ public class LendingSystem {
 
 
     public void viewBorrowedBooks() {
-        log.logInfo("LendingSystem  addBook START");
+        log.logInfo("LendingSystem viewBorrowedBooks START");
 
         if(!borrowedBooksMap.isEmpty()) {
             System.out.println("Borrowed Books:");
@@ -126,7 +126,7 @@ public class LendingSystem {
             log.logError("NO Borrowed Books");
         }
 
-        log.logInfo("LendingSystem  addBook END");
+        log.logInfo("LendingSystem viewBorrowedBooks END");
     }
 
     public void removeBorrowedBooksByPatron(Patron patron){

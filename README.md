@@ -11,14 +11,14 @@ the solution should demonstrate understanding of Object-Oriented Programming (OO
 ### Book Management
 - **Book Class**: Represents a book with attributes title, author, ISBN, and publication year.
 - **Inventory Management**: 
-  - responable for track available books.
+  - responsible for track available books.
   - Add, remove, update, and search books by title, author, or ISBN.
   - while removing it checks is the book is not borrowed by any Patron
 
 ### Patron Management
 - **Patron Class**: Represents library members.
 - **Patron Management**: 
-  - responable for track Patrons.
+  - responsible for track Patrons.
   - Add, update , remove patrons.
   - while removing it checks is Patron has not borrowed by Book
 
@@ -38,15 +38,18 @@ the solution should demonstrate understanding of Object-Oriented Programming (OO
 
 ## How to Run
 1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/bhargavd2/LibraryManagementSystem.git
-   cd LibraryManagementSystem
-2. mvn clean package
+   
+   - git clone https://github.com/bhargavd2/LibraryManagementSystem.git
+   - cd LibraryManagementSystem
+2. Install dependency
+   ```bash 
+   mvn clean package
 3. Run `Main` class to interact with the system and follow the instruction.
 
 ## Future Plans
 - **Persistence**: Integrate with a database for persistent storage.
 - **Advanced Features**: Implement multi-branch support and notification.
+- **Date of Lending and return**: during Checkout stop date and time to return
 - **Optional Extensions**
   - validator : as of now no validation is done. eg : 1002 is also a phone number
   - Multi-branch Support: Extend the system to support multiple library branches.
